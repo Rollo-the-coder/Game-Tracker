@@ -3,18 +3,40 @@
 
 </head>
 <body>
-   <input id ='input' type ="text">
+   <p>Select for Games Playing</p>
+   <input id ='input1' type='radio' value='play'>
+   <br>
+   <p>Select for Games Wanting to Play</p>
+   <input id ='input2' type='radio' value='want'>
+
    <p id="gamesPlayed"></p>
+   <p id="gamesWanted"></p>
 
    <script>
       var gamesPlaying = ['Genshin Impact', 'Hearth Stone', 'Assasins Creed'];
       var gamesWanting = ['Shadowlands', 'Cyberpunk 2077'];
       var text = "";
       var i;
+
+
+      let playing = document.getElementById("input1").checked;
+
+      function checkgames() {
+      if (playing.checked = true) {
       for (i = 0; i < gamesPlaying.length; i++) {
          text += gamesPlaying[i] + "<br>";
       }
       document.getElementById('gamesPlayed').innerHTML = text;
+      } else {
+      for (i = 0; i < gamesWanting.length; i++) {
+         text += gamesWanting[i] + "<br>";
+       }
+       document.getElementById('gamesWanted').innerHTML = text;
+      }
+      }
+
+      checkgames();
+
    </script>
 
 
