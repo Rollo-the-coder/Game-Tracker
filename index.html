@@ -4,38 +4,62 @@
 </head>
 <body>
    <p>Select for Games Playing</p>
-   <input id ='input1' type='radio' value='play'>
+   <input id ='input1' type='radio' name="select" value='play'>
    <br>
    <p>Select for Games Wanting to Play</p>
-   <input id ='input2' type='radio' value='want'>
+   <input id ='input2' type='radio' name="select" value='want'>
+   <br>
+   <input id = 'inputbutton' type='submit'>
 
    <p id="gamesPlayed"></p>
    <p id="gamesWanted"></p>
 
+
    <script>
       var gamesPlaying = ['Genshin Impact', 'Hearth Stone', 'Assasins Creed'];
       var gamesWanting = ['Shadowlands', 'Cyberpunk 2077'];
-      var text = "";
-      var i;
 
-
-      let playing = document.getElementById("input1").checked;
+      let playing = document.getElementById("input1");
+      let wanting = document.getElementById("input2");
 
       function checkgames() {
-      if (playing.checked = true) {
+      var text1 = "";
+      var text2 = "";
+      var i;
+      if (playing.checked) {
       for (i = 0; i < gamesPlaying.length; i++) {
-         text += gamesPlaying[i] + "<br>";
+         text1 += gamesPlaying[i] + "<br>";
       }
-      document.getElementById('gamesPlayed').innerHTML = text;
-      } else {
+      document.getElementById("inputbutton").addEventListener('click', clearWanting);
+      document.getElementById('gamesPlayed').innerHTML = text1;
+      } else if (wanting.checked) {
       for (i = 0; i < gamesWanting.length; i++) {
-         text += gamesWanting[i] + "<br>";
+         text2 += gamesWanting[i] + "<br>";
        }
-       document.getElementById('gamesWanted').innerHTML = text;
+       document.getElementById("inputbutton").addEventListener('click', clearPlaying);
+       document.getElementById('gamesWanted').innerHTML = text2;
+      } else {
+         alert("Please select a choice my Springroll");
       }
+         playing.checked = false;
+         wanting.checked = false;
       }
 
-      checkgames();
+      function clearPlaying() {
+         document.getElementById('gamesPlayed').innerHTML = "";
+      }
+
+      function clearWanting() {
+         document.getElementById('gamesWanted').innerHTML = "";
+      }
+
+     
+      document.getElementById('inputbutton').addEventListener('click', checkgames);
+      
+
+
+      // add games to both want and playing
+      //clear para for new text as well
 
    </script>
 
