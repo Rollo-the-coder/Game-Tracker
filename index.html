@@ -10,9 +10,23 @@
    <input id ='input2' type='radio' name="select" value='want'>
    <br>
    <input id = 'inputbutton' type='submit'>
-
    <p id="gamesPlayed"></p>
    <p id="gamesWanted"></p>
+
+   <br><br><br>
+   <p>Add A Game!</p>
+   <p>Game Title</p>
+   <input id = 'gamename' type="text">
+   <br>
+   <p>Currently Playing</p>
+   <input id = 'rPlay' type="radio" name="wantplay">
+   <br>
+   <p>Want to Play</p>
+   <input id = 'rWant' type="radio" name="wantplay">
+   <br>
+   <input id = 'addGame' type="submit" value="Add Game">
+
+  
 
 
    <script>
@@ -22,27 +36,45 @@
       let playing = document.getElementById("input1");
       let wanting = document.getElementById("input2");
 
-      function checkgames() {
+      let addPlaying = document.getElementById('rPlay');
+      let addWanting = document.getElementById('rWant');
+
+
+      function checkgames() {  
       var text1 = "";
       var text2 = "";
       var i;
       if (playing.checked) {
+         clearWanting();
       for (i = 0; i < gamesPlaying.length; i++) {
          text1 += gamesPlaying[i] + "<br>";
       }
-      document.getElementById("inputbutton").addEventListener('click', clearWanting);
       document.getElementById('gamesPlayed').innerHTML = text1;
       } else if (wanting.checked) {
+         clearPlaying();
       for (i = 0; i < gamesWanting.length; i++) {
          text2 += gamesWanting[i] + "<br>";
        }
-       document.getElementById("inputbutton").addEventListener('click', clearPlaying);
        document.getElementById('gamesWanted').innerHTML = text2;
       } else {
          alert("Please select a choice my Springroll");
       }
          playing.checked = false;
          wanting.checked = false;
+      }
+
+      function addGame() {
+         document.getElementById('gamename').value = title;
+         // take input text and turn into value to submite to array
+         if (addPlaying.checked) {
+            gamesPlaying.push(title.value)
+         } else if (addWanting.checked) {
+            gamesWanting.push(title.value)
+         } else {
+            alert("Please select and option");
+         }
+         
+
       }
 
       function clearPlaying() {
@@ -52,10 +84,10 @@
       function clearWanting() {
          document.getElementById('gamesWanted').innerHTML = "";
       }
-
+      
      
       document.getElementById('inputbutton').addEventListener('click', checkgames);
-      
+      document.getElementById('addGame').addEventListener('click', addGame);
 
 
       // add games to both want and playing
@@ -64,5 +96,5 @@
    </script>
 
 
-   <!-- <script src="script.js"></script>  -->
+  
 </body>
