@@ -16,7 +16,7 @@
    <br><br><br>
    <p>Add A Game!</p>
    <p>Game Title</p>
-   <input id = 'gamename' type="text">
+   <input id = 'gameName' class='gName' type="text">
    <br>
    <p>Currently Playing</p>
    <input id = 'rPlay' type="radio" name="wantplay">
@@ -36,11 +36,9 @@
       let playing = document.getElementById("input1");
       let wanting = document.getElementById("input2");
 
-      let addPlaying = document.getElementById('rPlay');
-      let addWanting = document.getElementById('rWant');
-
 
       function checkgames() {  
+         //Ability to check games playing and games wanting based of off arrays
       var text1 = "";
       var text2 = "";
       var i;
@@ -64,17 +62,24 @@
       }
 
       function addGame() {
-         document.getElementById('gamename').value = title;
-         // take input text and turn into value to submite to array
-         if (addPlaying.checked) {
-            gamesPlaying.push(title.value)
-         } else if (addWanting.checked) {
-            gamesWanting.push(title.value)
+         //Ability to add games 
+         let title = document.getElementsByClassName('gName')[0].value;
+         if (document.getElementById('rPlay').checked) {
+            gamesPlaying.push(title); 
+            alert(gamesPlaying); 
+         } else if (document.getElementById('rWant').checked) {
+            gamesWanting.push(title);
+            alert(gamesWanting);
          } else {
             alert("Please select and option");
          }
          
-
+         //Clear up inputs
+         document.getElementById('rPlay').checked = false
+         document.getElementById('rWant').checked = false
+         document.getElementById('gameName').value = ""
+         clearPlaying();
+         clearWanting();
       }
 
       function clearPlaying() {
@@ -91,7 +96,7 @@
 
 
       // add games to both want and playing
-      //clear para for new text as well
+      
 
    </script>
 
